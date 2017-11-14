@@ -1,0 +1,2 @@
+
+    <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-TrashCollector-20171113115600.mdf;Initial Catalog=aspnet-TrashCollector-20171113115600;Integrated Security=True" providerName="System.Data.SqlClient" />
