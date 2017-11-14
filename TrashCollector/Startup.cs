@@ -1,5 +1,8 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin;
 using Owin;
+using TrashCollector.Models;
 
 [assembly: OwinStartupAttribute(typeof(TrashCollector.Startup))]
 namespace TrashCollector
@@ -16,12 +19,12 @@ namespace TrashCollector
         {
             ApplicationDbContext context = new ApplicationDbContext();
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            var UserManager = new ApplicationUserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var roleManager = new RoleManager<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>(new RoleStore<IdentityRole>(context));
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             
             if (!roleManager.RoleExists("Admin"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
 
@@ -31,7 +34,7 @@ namespace TrashCollector
 
                 string userPWD = "abc123";
 
-                var chkUser = UserManager.CreateAsync(user, userPWD);
+                var chkUser = UserManager.Create(user, userPWD);
 
                 if (chkUser.Succeeded)
                 {
