@@ -14,6 +14,15 @@ namespace TrashCollector.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public ActionResult SignIn()
+        {
+            return View();
+        }
+
+
+
+
+
         // GET: Employees
         public ActionResult Index()
         {
