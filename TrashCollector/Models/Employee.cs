@@ -11,7 +11,7 @@ namespace TrashCollector.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string RouteId { get; set; }
-        public string RouteDate { get; set; }
-        public string NumberOfStops { get; set; }
+        public DateTime RouteDate { get; set; }
+        public int NumberOfStops { get; set; }
     }
 }

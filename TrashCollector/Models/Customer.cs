@@ -15,13 +15,13 @@ namespace TrashCollector.Models
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
-        public string PickupDay { get; set; }
-        public string PickupDate { get; set; }
+        public DayOfWeek PickupDay { get; set; }
+        public DateTime PickupDate { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string NoPickupStartDate { get; set; }
-        public string NoPickupEndDate { get; set; }
-        public string SpecialPickup { get; set; }
+        public DateTime NoPickupStartDate { get; set; }
+        public DateTime NoPickupEndDate { get; set; }
+        public DateTime SpecialPickup { get; set; }
 
 
         //customers/create

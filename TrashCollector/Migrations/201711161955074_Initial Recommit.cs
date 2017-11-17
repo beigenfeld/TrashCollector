@@ -3,7 +3,7 @@ namespace TrashCollector.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Customers : DbMigration
+    public partial class InitialRecommit : DbMigration
     {
         public override void Up()
         {
@@ -14,8 +14,32 @@ namespace TrashCollector.Migrations
                         CustomerId = c.String(nullable: false, maxLength: 128),
                         FirstName = c.String(),
                         LastName = c.String(),
+                        Address = c.String(),
+                        City = c.String(),
+                        State = c.String(),
+                        Zip = c.String(),
+                        PickupDay = c.Int(nullable: false),
+                        PickupDate = c.DateTime(nullable: false),
+                        Username = c.String(),
+                        Password = c.String(),
+                        NoPickupStartDate = c.DateTime(nullable: false),
+                        NoPickupEndDate = c.DateTime(nullable: false),
+                        SpecialPickup = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.CustomerId);
+            
+            CreateTable(
+                "dbo.Employees",
+                c => new
+                    {
+                        EmployeeId = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        RouteId = c.String(),
+                        RouteDate = c.DateTime(nullable: false),
+                        NumberOfStops = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.EmployeeId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -104,6 +128,7 @@ namespace TrashCollector.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Employees");
             DropTable("dbo.Customers");
         }
     }
