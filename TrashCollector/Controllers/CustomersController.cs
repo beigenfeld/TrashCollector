@@ -12,7 +12,7 @@ namespace TrashCollector.Controllers
 {
     public class CustomersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        public ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Customer
         public ActionResult Index()
@@ -48,14 +48,20 @@ namespace TrashCollector.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         
-        public ActionResult Create([Bind(Include = "FirstName,LastName,Address")] Customer customer)
+        public ActionResult Create(/*[Bind(Include = "Address,City,Zip,PickupDay")]*/ Customer customer)
         {
             if (ModelState.IsValid)
             {
-                //customer.FirstName = User.firstName; // how?
+                string userName = User.Identity.Name;
+                var currentUser = db.Users.Where(c => c.UserName == userName).Single();
+                customer.User = currentUser;
+                customer.PickupDate = DateTime.Today;
+                customer.NoPickupEndDate = DateTime.Today;
+                customer.NoPickupStartDate = DateTime.Today;
+                customer.SpecialPickup = DateTime.Today;
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
 
             return View(customer);

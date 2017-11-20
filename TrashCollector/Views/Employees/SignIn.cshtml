@@ -1,7 +1,8 @@
 ﻿@using TrashCollector.Models
 @model EmployeeLoginViewModel
 @{
-    ViewBag.Title = "Employee Log in";
+    ViewBag.Title = "Employee Log In";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -56,6 +57,16 @@
                                 <input type="submit" value="Log in" class="btn btn-default" />
                             </div>
                         </div>
+
+                        @*  Employee role drop down list
+        <div class="form-group">
+            @Html.Label("User Role", new { @class =  "col-md-2 control-label"})
+            <div class="col-md-10">
+               @Html.DropDownList("Name")
+               @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, "Select Role")
+            </div>
+    </div>*@
+
                         @*<p>
                             @Html.ActionLink("Register as a new user", "Register")
                         </p>*@
