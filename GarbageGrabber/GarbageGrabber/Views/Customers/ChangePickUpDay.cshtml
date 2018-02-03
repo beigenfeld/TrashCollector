@@ -1,0 +1,49 @@
+﻿@model GarbageGrabber.Models.Customer
+@using Microsoft.AspNet.Identity;
+@using GarbageGrabber.Models;
+@{
+    ViewBag.Title = "ChangePickUpDay";
+}
+
+<h2>ChangePickUpDay</h2>
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+    var Id = User.Identity.GetUserId();
+    var customer = db.Customers.FirstOrDefault(c => c.UserId == Id);
+}
+
+    <div>
+        Your current Pick-Up Day is set for: <h3>@customer.PickUpDay</h3>
+    </div>
+
+@using (Html.BeginForm())
+{
+    <div>
+        Change to:
+        <div class="form-group">
+            @Html.LabelFor(m => m.PickUpDay, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                
+                <div class="form-group">
+                    @Html.DropDownListFor(m => m.PickUpDay, new List<SelectListItem>
+                {new SelectListItem{Text="Monday", Value="Monday"},
+                 new SelectListItem{Text="Tuesday", Value="Tuesday"},
+                 new SelectListItem{Text="Wednesday", Value="Wednesday"},
+                 new SelectListItem{Text="Thursday", Value="Thursday"},
+                 new SelectListItem{Text="Friday", Value="Friday"},
+                 new SelectListItem{Text="Saturday", Value="Saturday"},
+                 new SelectListItem{Text="Sunday", Value="Sunday"},
+                 })
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.HiddenFor(m => m.UserId)
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Save Changes" />
+        </div>
+    </div>
+}

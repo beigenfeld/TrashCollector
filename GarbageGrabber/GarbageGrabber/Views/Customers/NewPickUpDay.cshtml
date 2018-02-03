@@ -1,0 +1,16 @@
+﻿@model GarbageGrabber.Models.Customer
+@using Microsoft.AspNet.Identity;
+@using GarbageGrabber.Models;
+@{
+    ViewBag.Title = "NewPickUpDay";
+}
+
+<h2>New Pick-Up Day</h2>
+@{ApplicationDbContext db = new ApplicationDbContext();
+        var Id = User.Identity.GetUserId();
+        var customer = db.Customers.FirstOrDefault(c => c.UserId == Id);
+    }
+
+Your pick-ups will now be every : <h3>@customer.PickUpDay</h3>
+
+@Html.ActionLink("Continue", "MyPickUp")

@@ -1,0 +1,103 @@
+﻿@model GarbageGrabber.Models.Customer
+@{
+    ViewBag.Title = "CreateProfile";
+}
+
+<h2>Create Profile</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+    </div>
+</div>
+
+    <h2>Billing Address</h2>
+<div class="form-group">
+    @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.State, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.ZipCode, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
+    </div>
+</div>
+
+
+<h4>Show days list? @Html.CheckBox("Days List", new { @id = "DaysListBox", onclick = "ShowDaysList()" })</h4>
+
+
+<div class="form-group" id="DaysList" hidden>
+    @Html.LabelFor(m => m.PickUpDay, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        I would like to schedule a pick-up every: 
+        <div class="form-group">
+            @Html.DropDownListFor(m => m.PickUpDay, new List<SelectListItem>
+                {new SelectListItem{Text="Monday", Value="Monday"},
+                 new SelectListItem{Text="Tuesday", Value="Tuesday"},
+                 new SelectListItem{Text="Wednesday", Value="Wednesday"},
+                 new SelectListItem{Text="Thursday", Value="Thursday"},
+                 new SelectListItem{Text="Friday", Value="Friday"},
+                 new SelectListItem{Text="Saturday", Value="Saturday"},
+                 new SelectListItem{Text="Sunday", Value="Sunday"},
+                 })
+        </div>
+    </div>
+</div>
+
+    
+
+
+<div class="form-group">
+    @Html.HiddenFor(m => m.UserId)
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" class="btn btn-default" value="Add Profile Information" />
+    </div>
+</div>
+}
+
+@section scripts{
+    <script>
+        function ShowDaysList() {
+            let DaysList = document.getElementById('DaysList');
+            let checkBox = document.getElementById('DaysListBox');
+            if (checkBox.checked == true) {
+                DaysList.style.display = 'block';
+            }
+            else if (checkBox.checked == false) {
+                DaysList.style.display = 'none';
+            }
+        }
+
+        
+    </script>
+}

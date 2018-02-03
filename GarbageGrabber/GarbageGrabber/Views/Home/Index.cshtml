@@ -1,0 +1,31 @@
+﻿@model GarbageGrabber.Models.ApplicationUser
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Garbage Grabber</h1>
+    <p class="lead">Describe Garbage Grabber here.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Create a New Account</h2>
+        <p>Enter your information and create a profile here to start receiving garbage pick-ups.</p>
+        <p><a class="btn btn-default" href="..\Customers\CreateProfile2">Register Now &raquo;</a></p>
+        <p><h4>Aready registered?  @Html.ActionLink("Log In Here", "Login", "Account")</h4></p>
+        <p><h4>Aready logged in?  @Html.ActionLink("Click Here", "MyPickUp", "Customers")</h4></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Employee Access</h2>
+        <p><a class="btn btn-default" href="..\Employees\EmployeeHome">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Routes By Zip Code</h2>
+        <p>See routes by zip code</p>
+        <p><a class="btn btn-default" href="..\Routes\Index">Learn more &raquo;</a></p>
+    </div>
+    
+</div>
+

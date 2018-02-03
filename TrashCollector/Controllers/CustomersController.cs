@@ -14,6 +14,14 @@ namespace TrashCollector.Controllers
     {
         public ApplicationDbContext db = new ApplicationDbContext();
 
+        public ActionResult MakePayment()
+        {
+            
+            return View();
+            
+        }
+
+
         // GET: Customer
         public ActionResult Index()
         {
@@ -55,11 +63,8 @@ namespace TrashCollector.Controllers
                 string userName = User.Identity.Name;
                 var currentUser = db.Users.Where(c => c.UserName == userName).Single();
                 customer.User = currentUser;
-                customer.PickupDate = DateTime.Today;
-                customer.NoPickupEndDate = DateTime.Today;
-                customer.NoPickupStartDate = DateTime.Today;
-                customer.SpecialPickup = DateTime.Today;
                 db.Customers.Add(customer);
+
                 db.SaveChanges();
                 return RedirectToAction("Details");
             }

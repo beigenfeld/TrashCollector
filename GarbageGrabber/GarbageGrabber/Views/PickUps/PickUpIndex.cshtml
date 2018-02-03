@@ -1,0 +1,71 @@
+﻿@model IEnumerable<GarbageGrabber.Models.PickUp>
+
+@{
+    ViewBag.Title = "PickUpIndex";
+}
+
+<h2>Pick Up Index</h2>
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Id)
+            
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.PickUpDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickUpAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickUpZip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickUpPerformed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.PickUpDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickUpAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickUpZip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickUpPerformed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+           
+            </td>
+        </tr>
+    }
+
+</table>

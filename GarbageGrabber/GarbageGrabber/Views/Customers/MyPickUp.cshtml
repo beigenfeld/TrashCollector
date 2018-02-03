@@ -1,0 +1,43 @@
+﻿@model GarbageGrabber.Models.Customer
+@using Microsoft.AspNet.Identity;
+@using GarbageGrabber.Models;
+@{
+    ViewBag.Title = "MyPickUp";
+}
+
+<h2>MyPickUp</h2>
+
+
+    @{ 
+        ApplicationDbContext db = new ApplicationDbContext();
+        var CurrentUserId = User.Identity.GetUserId();
+        var customer = db.Customers.FirstOrDefault(c => c.UserId == CurrentUserId);
+
+    
+    <div>
+        My Pick-Up Day is set for: <h3>@customer.PickUpDay</h3>
+    </div>
+    @Html.ActionLink("Change Pick-Up Day", "ChangePickUpDay")
+
+    }
+
+    <div>
+        Page Loaded at: @DateTime.Now;<br/>
+        Today is: @DateTime.Now.DayOfWeek, @DateTime.Now.ToString("MMMM") @DateTime.Now.Day, @DateTime.Now.Year 
+        
+    </div>
+    <div>
+        My next pick up is scheduled for: @customer.NextPickUp;
+    </div>
+
+
+
+    <div>
+        My current balance is:
+        <br />See List of Invoices:
+    </div>
+
+    <div>
+        <strong>To temporarily suspend pick ups, @Html.ActionLink("click here", "SuspendPickUps", "Account")</strong>
+    </div>
+

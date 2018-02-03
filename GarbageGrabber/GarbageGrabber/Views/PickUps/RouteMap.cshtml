@@ -1,0 +1,74 @@
+﻿
+@model IEnumerable<GarbageGrabber.Models.PickUp>
+@{ViewBag.Title = "PickUpsMap"; }
+
+<h2>Pick Ups Map</h2>
+<div>
+    <h3>@Html.ActionLink("Show All Pick-Ups", "ShowAllPickUps")</h3>
+</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+        var uluru = {lat: 43, lng: -88};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 9,
+          center: uluru
+        });
+        //var geocoder = new google.maps.Geocoder();
+        //ShowAllPickUps(geocoder, map);
+        //var marker = new google.maps.Marker({
+        //  position: uluru,
+        //  map: map
+        //});
+        }
+
+        
+        function ShowAllPickUps(geocoder, pickUpsMap) {
+            
+           
+                
+                @foreach (var item in Model)
+                {
+                    var pickUpLocation = item.PickUpAddress + ", " + item.PickUpZip;
+                    
+
+                    
+                    //var marker = new google.maps.Marker({
+                    //});
+                }
+                
+            
+           
+            //for (let i=0; i< ; i++){
+                
+            //    geocoder.geocode({address: , function (results, status){
+            //        if (status == google.maps.GeocoderStatus.OK){
+            //            pickUpsMap.setCenter(results[0].geometry.location);
+            //            var marker = new google.maps.Marker({position: results[0].geometry.location, map: pickUpsMap});
+            //        } else {
+            //            alert("Geocode was not successful");
+            //        }
+            //    }
+                
+            //    });
+            //}
+
+            }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcC23OQVvFt3IRdOV9P4YS7NnLhLkWzGE&callback=initMap">
+    </script>
+</body>
+</html>
+
