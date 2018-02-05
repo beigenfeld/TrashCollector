@@ -137,5 +137,22 @@ namespace GarbageGrabber.Controllers
             return View(pickUpsList);
         }
 
+        public ActionResult ChangeThisPickUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangeThisPickup([Bind(Include= "RescheduleThisPickUp")] Customer customer)
+        {
+
+            var currentUserId = User.Identity.GetUserId();
+            customer.UserId = currentUserId;
+            var thisPickUp = db.PickUps.Where(c => c.UserId == currentUserId).FirstOrDefault();
+            db.SaveChanges();
+            return RedirectToAction("MyPickUp","Customers");
+        }
+
+
     }
 }

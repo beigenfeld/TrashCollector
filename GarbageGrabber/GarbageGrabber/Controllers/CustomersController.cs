@@ -113,7 +113,10 @@ namespace GarbageGrabber.Controllers
             return View();
         }
 
-
+        public ActionResult ChangeThisPickUp()
+        {
+            return View();
+        }
 
 
 

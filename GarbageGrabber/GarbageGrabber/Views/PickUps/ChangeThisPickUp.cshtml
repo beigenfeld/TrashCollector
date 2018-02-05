@@ -1,0 +1,38 @@
+﻿@model GarbageGrabber.Models.PickUp
+@{
+    ViewBag.Title = "ChangeThisPickUp";
+}
+
+<h2>ChangeThisPickUp</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.RescheduleThisPickUp, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            I would like to Change this week's pick-up to:
+            <div class="form-group">
+                @Html.DropDownListFor(m => m.RescheduleThisPickUp, new List<SelectListItem>
+                {new SelectListItem{Text="Monday", Value="Monday"},
+                new SelectListItem{Text="Tuesday", Value="Tuesday"},
+                new SelectListItem{Text="Wednesday", Value="Wednesday"},
+                new SelectListItem{Text="Thursday", Value="Thursday"},
+                new SelectListItem{Text="Friday", Value="Friday"},
+                new SelectListItem{Text="Saturday", Value="Saturday"},
+                new SelectListItem{Text="Sunday", Value="Sunday"},
+                })
+                @Html.ValidationMessageFor(model => model.RescheduleThisPickUp, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Reschedule" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@Html.EditorFor(model => model.RescheduleThisPickUp, new { htmlAttributes = new { @class = "form-control" } })
+            
