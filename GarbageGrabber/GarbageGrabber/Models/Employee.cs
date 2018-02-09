@@ -14,16 +14,7 @@ namespace GarbageGrabber.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Route { get; set; }
-
-
-
-
-
-
-
-
-
-
+        
 
 
     }

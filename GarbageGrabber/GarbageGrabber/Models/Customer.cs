@@ -25,7 +25,7 @@ namespace GarbageGrabber.Models
         public string UserId { get; set; }
         // string userId = User.Identity.GetUserId();
         public string NextPickUp { get; set; }
-
-
+        public string RescheduleThisPickUp { get; set; }
+        public int Balance { get; set; }
     }
 }

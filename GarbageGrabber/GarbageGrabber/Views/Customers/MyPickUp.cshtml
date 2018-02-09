@@ -16,29 +16,33 @@
     
     <div>
         My Pick-Up Day is set for: <h3>@customer.PickUpDay</h3>
+        @Html.ActionLink("Change Pick-Up Day", "ChangePickUpDay")
     </div>
-    @Html.ActionLink("Change Pick-Up Day", "ChangePickUpDay")
-
+    
+    <br/>
     }
 
-    <div>
+    @*<div>
         Page Loaded at: @DateTime.Now;<br/>
         Today is: @DateTime.Now.DayOfWeek, @DateTime.Now.ToString("MMMM") @DateTime.Now.Day, @DateTime.Now.Year 
         
-    </div>
+    </div>*@
     <div>
         My next pick up is scheduled for: @customer.NextPickUp;
-        <br/>@Html.ActionLink("Change This Week's Pick Up Date", "ChangeThisPickUp", "PickUps")
+        @Html.ActionLink("Change This Week's Pick Up Date", "ChangeThisPickUp", "Customers")
     </div>
 
 
 
     <div>
-        My current balance is:
-        <br />See List of Invoices:
+        My current balance is: 
+        @Html.ActionLink("Check Balance", "CheckBalance")
     </div>
 
     <div>
         <strong>To temporarily suspend pick ups, @Html.ActionLink("click here", "SuspendPickUps", "Account")</strong>
     </div>
 
+<div>
+    <strong>To make a payment, @Html.ActionLink("click here", "MakePayment", "Customers")</strong>
+</div>

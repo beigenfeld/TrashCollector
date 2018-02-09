@@ -12,7 +12,7 @@
         <div class="col-md-10">
             I would like to Change this week's pick-up to:
             <div class="form-group">
-                @Html.DropDownListFor(m => m.RescheduleThisPickUp, new List<SelectListItem>
+                @Html.DropDownListFor(m => m.PickUpDate, new List<SelectListItem>
                 {new SelectListItem{Text="Monday", Value="Monday"},
                 new SelectListItem{Text="Tuesday", Value="Tuesday"},
                 new SelectListItem{Text="Wednesday", Value="Wednesday"},
@@ -22,7 +22,7 @@
                 new SelectListItem{Text="Sunday", Value="Sunday"},
                 })
                 @Html.ValidationMessageFor(model => model.RescheduleThisPickUp, "", new { @class = "text-danger" })
-
+                @Html.HiddenFor(m => m.UserId)
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Reschedule" class="btn btn-default" />
@@ -34,5 +34,3 @@
 }
 
 
-@Html.EditorFor(model => model.RescheduleThisPickUp, new { htmlAttributes = new { @class = "form-control" } })
-            

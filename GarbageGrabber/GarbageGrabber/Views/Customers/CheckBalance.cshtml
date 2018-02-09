@@ -1,0 +1,13 @@
+﻿@model IEnumerable<GarbageGrabber.Models.PickUp>
+
+    @{ 
+        ViewBag.Title = "CheckBalance";
+    }
+
+
+<h2>Check Balance</h2>
+My current balance is: 
+@foreach (var pickUp in Model)
+{
+    @Html.DisplayNameFor(model => model.Cost)
+}

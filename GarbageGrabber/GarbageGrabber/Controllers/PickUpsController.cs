@@ -153,6 +153,5 @@ namespace GarbageGrabber.Controllers
             return RedirectToAction("MyPickUp","Customers");
         }
 
-
     }
 }

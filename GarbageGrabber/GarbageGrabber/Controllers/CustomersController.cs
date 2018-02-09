@@ -56,7 +56,7 @@ namespace GarbageGrabber.Controllers
             customer.Role = "Customer";
             db.Customers.Add(customer);
             db.SaveChanges();
-            return RedirectToAction("CustomerRegister", "Customer");
+            return RedirectToAction("Register", "Account");
         }
 
         public ActionResult NotAnEmployee()
@@ -118,7 +118,49 @@ namespace GarbageGrabber.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult ChangeThisPickUp ([Bind(Include ="UserId, RescheduleThisPickUp")] PickUp rescheduledPickup)
+        {
+            var currentUser = User.Identity;
+            var currentUserId = currentUser.GetUserId();
+            var currentCustomer = db.Customers.Where(c => c.UserId == currentUserId).FirstOrDefault();
+            var currentPickUpDate = currentCustomer.NextPickUp;
+            var thisPickUp = db.PickUps.Where(p => p.UserId == currentUserId).Where(p => p.PickUpDate == currentPickUpDate).FirstOrDefault();
 
+            var today = DateTime.Now;
+            for (int i = 1; i <= 7; i++)
+            {
+                var dayOfWeek = today.AddDays(i);
+                var dayName = dayOfWeek.ToString("ddddd");
+
+                if (dayName == rescheduledPickup.RescheduleThisPickUp)
+                {
+                    thisPickUp.PickUpDate = dayOfWeek.ToString();
+                    currentCustomer.NextPickUp = dayOfWeek.ToString();
+                    db.SaveChanges();
+                }
+            }
+                    return View("MyPickUp");
+            
+        }
+
+        public ActionResult MakePayment()
+        {
+            return View();
+        }
+
+        public ActionResult CheckBalance()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var currentUser = db.Customers.Where(c => c.UserId == currentUserId).FirstOrDefault();
+            var userPickUps = db.PickUps.Where(p => p.UserId == currentUser.UserId && p.PickUpPerformed == true).ToList();
+            var balanceDue = "";
+            foreach (var pickUp in userPickUps)
+            {
+                balanceDue += pickUp.Cost;
+            }
+            return View(balanceDue);
+        }
 
     }
 }

@@ -37,7 +37,7 @@
     </tr>
 </table>
     
-    @foreach (var item in Model)   {
+    @*@foreach (var item in Model)   {
 
         if (item.PickUpZip == "53214") {
         <tr>
@@ -57,11 +57,11 @@
             </td>
         </tr>
             }
-    }
+    }*@
 
 
 
-}
 
 
-Check Today's Pick-Ups:
+
+<h3>Check Pick-Ups Map: @Html.ActionLink("Click Here", "RouteMap", "PickUps")</h3>

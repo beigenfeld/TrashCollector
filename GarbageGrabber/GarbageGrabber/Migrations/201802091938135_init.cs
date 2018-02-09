@@ -3,7 +3,7 @@ namespace GarbageGrabber.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -22,6 +22,8 @@ namespace GarbageGrabber.Migrations
                         PickUpDay = c.String(),
                         UserId = c.String(),
                         NextPickUp = c.String(),
+                        RescheduleThisPickUp = c.String(),
+                        Balance = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
